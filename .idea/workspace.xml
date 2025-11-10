@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="904a4c7b-e69c-4c84-8a76-a0ae3309cc96" name="Changes" comment="Corrected the locator in test1" />
+    <list default="true" id="904a4c7b-e69c-4c84-8a76-a0ae3309cc96" name="Changes" comment="Removed idea and target">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762782039117</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Removed idea and target">
+      <option name="closed" value="true" />
+      <created>1762809731227</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762809731227</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -118,6 +128,7 @@
     <MESSAGE value="Removed comments from pom.xml" />
     <MESSAGE value="Replaced driver with browser, added boolean, created a folder for chromedriver.exe" />
     <MESSAGE value="Corrected the locator in test1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected the locator in test1" />
+    <MESSAGE value="Removed idea and target" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed idea and target" />
   </component>
 </project>
