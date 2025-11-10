@@ -19,7 +19,7 @@ public class LoginTest {
         browser.findElement(By.id("user-name")).sendKeys("standard_user");
         browser.findElement(By.id("password")).sendKeys("secret_sauce");
         browser.findElement(By.id("login-button")).click();
-        WebElement header = browser.findElement(By.cssSelector(".title"));
+        WebElement header = browser.findElement(By.cssSelector(".app_logo"));
         boolean isHeaderVisible = header.isDisplayed();
         assertTrue(isHeaderVisible, "Заголовок 'Swag Labs' должен быть виден на экране");
         assertEquals("Swag Labs", header.getText());
@@ -45,4 +45,3 @@ public class LoginTest {
         }
     }
 }
-
