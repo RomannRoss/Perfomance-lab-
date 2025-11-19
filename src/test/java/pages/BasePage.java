@@ -1,10 +1,11 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import utils.PropertyReader;
 
 public class BasePage {
     public WebDriver browser;
-    public static final String BASE_URL = "https://www.saucedemo.com";
+    public static final String BASE_URL = PropertyReader.getProperty("saucedemo.url");
 
     public BasePage(WebDriver browser) {
         this.browser = browser;

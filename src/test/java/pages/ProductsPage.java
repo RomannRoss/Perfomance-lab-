@@ -5,15 +5,13 @@ import org.openqa.selenium.WebDriver;
 
 public class ProductsPage extends BasePage {
 
-    public By addToCartButton = By.id("add-to-cart-sauce-labs-backpack");
-    public By logo = By.className("app_logo");
+    private By addBackpackBtn = By.id("add-to-cart-sauce-labs-backpack");
+    private By addTShirtBtn = By.id("add-to-cart-test.allthethings()-t-shirt-(red)");
+    private By cartLink = By.className("shopping_cart_link");
+    private By logo = By.className("app_logo");
 
     public ProductsPage(WebDriver browser) {
         super(browser);
-    }
-
-    public void addBackpackToCart() {
-        browser.findElement(addToCartButton).click();
     }
 
     public boolean isLogoDisplayed() {
@@ -22,5 +20,20 @@ public class ProductsPage extends BasePage {
 
     public String getLogoText() {
         return browser.findElement(logo).getText();
+    }
+
+    public ProductsPage addBackpackToCart() {
+        browser.findElement(addBackpackBtn).click();
+        return this;
+    }
+
+    public ProductsPage addTShirtRedToCart() {
+        browser.findElement(addTShirtBtn).click();
+        return this;
+    }
+
+    public CartPage openCart() {
+        browser.findElement(cartLink).click();
+        return new CartPage(browser);
     }
 }

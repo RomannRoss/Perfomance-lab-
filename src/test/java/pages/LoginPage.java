@@ -2,37 +2,41 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import user.User;
 
 public class LoginPage extends BasePage {
-    public By usernameField = By.id("user-name");
-    public By passwordField = By.id("password");
-    public By loginButton = By.id("login-button");
-    public By errorMessage = By.cssSelector("[data-test='error']");
+
+    private By usernameField = By.id("user-name");
+    private By passwordField = By.id("password");
+    private By loginButton = By.id("login-button");
+    private By errorMessage = By.cssSelector("[data-test='error']");
 
     public LoginPage(WebDriver browser) {
         super(browser);
     }
 
-    public void openLoginPage() {
+    public LoginPage openLoginPage() {
         open();
+        return this;
     }
 
-    public void enterUsername(String username) {
+    public ProductsPage login(User user) {
+        enterUsername(user.getEmail());
+        enterPassword(user.getPassword());
+        clickLogin();
+        return new ProductsPage(browser);
+    }
+
+    private void enterUsername(String username) {
         browser.findElement(usernameField).sendKeys(username);
     }
 
-    public void enterPassword(String password) {
+    private void enterPassword(String password) {
         browser.findElement(passwordField).sendKeys(password);
     }
 
-    public void clickLogin() {
+    private void clickLogin() {
         browser.findElement(loginButton).click();
-    }
-
-    public void login(String username, String password) {
-        enterUsername(username);
-        enterPassword(password);
-        clickLogin();
     }
 
     public boolean isErrorDisplayed() {

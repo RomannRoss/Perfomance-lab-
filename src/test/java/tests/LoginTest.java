@@ -4,41 +4,44 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.ProductsPage;
+import user.User;
+import user.UserFactory;
+
 import static org.testng.Assert.*;
 
 public class LoginTest extends BaseTest {
 
     @Test
     public void testPositiveLogin() {
+        System.out.println("CorrectLogin Tests are running in thread: " + Thread.currentThread().getId());
         LoginPage loginPage = new LoginPage(browser);
         ProductsPage productsPage = new ProductsPage(browser);
 
         loginPage.openLoginPage();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(UserFactory.withAdminPermission());
 
-        assertTrue(productsPage.isLogoDisplayed(), "Логотип не отображается");
-        assertEquals(productsPage.getLogoText(), "Swag Labs", "Неправильный текст логотипа");
+        assertTrue(productsPage.isLogoDisplayed());
+        assertEquals(productsPage.getLogoText(), "Swag Labs");
     }
 
     @DataProvider(name = "negativeLoginData")
     public Object[][] negativeLoginData() {
         return new Object[][]{
-                {"wrong_user", "wrong_pass", "Epic sadface: Username and password do not match"},
-                {"", "secret_sauce", "Epic sadface: Username is required"},
-                {"standard_user", "", "Epic sadface: Password is required"}
+                { UserFactory.withLockedUserPermission(), "Epic sadface: Sorry, this user has been locked out."},
+                {new User("", "secret_sauce"), "Epic sadface: Username is required"},
+                {new User("standard_user", ""), "Epic sadface: Password is required"}
         };
     }
 
     @Test(dataProvider = "negativeLoginData")
-    public void testNegativeLogin(String username, String password, String expectedError) {
+    public void testNegativeLogin(User user, String expectedError) {
+        System.out.println("InCorrectLogin Tests are running in thread: " + Thread.currentThread().getId());
         LoginPage loginPage = new LoginPage(browser);
 
         loginPage.openLoginPage();
-        loginPage.enterUsername(username);
-        loginPage.enterPassword(password);
-        loginPage.clickLogin();
+        loginPage.login(user);
 
-        assertTrue(loginPage.isErrorDisplayed(), "Ошибка не отображается");
-        assertTrue(loginPage.getErrorText().contains(expectedError), "Неправильный текст ошибки");
+        assertTrue(loginPage.isErrorDisplayed());
+        assertEquals(loginPage.getErrorText(), expectedError);
     }
 }

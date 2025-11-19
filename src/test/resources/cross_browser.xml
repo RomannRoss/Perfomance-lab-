@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="ChromeAndEdgeSuite">
+<suite name="ChromeAndEdgeSuite" parallel="tests" thread-count="2">
 
-        <test name="Chrome Tests">
+    <test name="ChromeTests">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.LoginTest"/>
-            <class name="tests.ProductsTest"/>
         </classes>
     </test>
 
-    <test name="Edge Tests">
+    <test name="EdgeTests">
         <parameter name="browser" value="edge"/>
         <classes>
-            <class name="tests.LoginTest"/>
             <class name="tests.ProductsTest"/>
         </classes>
     </test>

@@ -8,12 +8,15 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
 public class BaseTest {
 
     public WebDriver browser;
+    String user;
+    String password;
 
     @BeforeMethod
     @Parameters("browser")
@@ -29,6 +32,9 @@ public class BaseTest {
 
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        user = PropertyReader.getProperty("saucedemo.user");
+        password = PropertyReader.getProperty("saucedemo.password");
     }
 
     @AfterMethod
