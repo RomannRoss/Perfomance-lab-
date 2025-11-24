@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -14,24 +15,29 @@ public class ProductsPage extends BasePage {
         super(browser);
     }
 
+    @Step("Проверить отображение логотипа 'Swag Labs'")
     public boolean isLogoDisplayed() {
         return !browser.findElements(logo).isEmpty();
     }
 
+    @Step("Получить текст логотипа")
     public String getLogoText() {
         return browser.findElement(logo).getText();
     }
 
+    @Step("Добавить в корзину: Sauce Labs Backpack")
     public ProductsPage addBackpackToCart() {
         browser.findElement(addBackpackBtn).click();
         return this;
     }
 
+    @Step("Добавить в корзину: Test.allTheThings() T-Shirt (Red)")
     public ProductsPage addTShirtRedToCart() {
         browser.findElement(addTShirtBtn).click();
         return this;
     }
 
+    @Step("Открыть корзину")
     public CartPage openCart() {
         browser.findElement(cartLink).click();
         return new CartPage(browser);

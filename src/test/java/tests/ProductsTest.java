@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.LoginPage;
@@ -11,7 +12,14 @@ import static org.testng.Assert.*;
 
 public class ProductsTest extends BaseTest {
 
-    @Test
+    @Epic("Модуль логина интернет-магазина")
+    @Feature("Работа с корзиной")
+    @Story("Добавление товаров в корзину и проверка счётчика")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Roman")
+    @TmsLink("Perfomance-lab-")
+    @Flaky
+    @Test(description = "Проверка добавления двух товаров в корзину и корректного отображения счётчика")
     public void checkGoodsAdded() {
         System.out.println("Products Tests are running in thread: " + Thread.currentThread().getId());
 
