@@ -1,5 +1,6 @@
 package tests;
 
+import enums.DepartmentNaming;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -8,6 +9,7 @@ import pages.ProductsPage;
 import user.User;
 import user.UserFactory;
 
+import static enums.DepartmentNaming.SWAGLABS;
 import static org.testng.Assert.*;
 
 public class LoginTest extends BaseTest {
@@ -29,7 +31,7 @@ public class LoginTest extends BaseTest {
         loginPage.login(UserFactory.withAdminPermission());
 
         assertTrue(productsPage.isLogoDisplayed());
-        assertEquals(productsPage.getLogoText(), "Swag Labss");
+        assertEquals(productsPage.getLogoText(), SWAGLABS.getDisplayName());
     }
 
     @DataProvider(name = "negativeLoginData")
